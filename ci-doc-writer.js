@@ -6,7 +6,7 @@ import path from "path";
 
 class CIDocumentationWriter extends DocumentationWriter {
   constructor() {
-    super({ model: "gpt-4o-mini" });
+    super(".agent-config.json");
     this.github = new Octokit({ auth: process.env.GITHUB_TOKEN });
     this.repoOwner = process.env.GITHUB_REPOSITORY_OWNER;
     this.repoName = process.env.GITHUB_REPOSITORY?.split("/")[1];

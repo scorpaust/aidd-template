@@ -2,15 +2,23 @@
 
 ## Issues Fixed
 
-### 1. Wrong CodeReviewer Constructor Parameter
-**Problem:** `ci-runner.js` was passing `"thorough"` instead of the config file path.
-**Fixed:** Changed to `new CodeReviewer(".agent-config.json")`
+### 1. Wrong Constructor Parameters in CI Scripts
+**Problem:**
+- `ci-runner.js` was passing `"thorough"` instead of the config file path
+- `ci-doc-writer.js` was passing an object instead of the config file path
+- `ci-bug-fixer.js` wasn't calling super() with the config path
+
+**Fixed:** All CI scripts now use `new ClassName(".agent-config.json")`
 
 ### 2. Missing Configuration File
 **Problem:** `.agent-config.json` was not in the repository.
 **Fixed:** Created `.agent-config.json` with default settings for all agents.
 
-### 3. Missing Git Fetch Step
+### 3. CLI Code Running on Import
+**Problem:** `doc-writer.js` had CLI code that executed when imported as a module, causing workflows to fail.
+**Fixed:** Wrapped CLI code in `if (import.meta.url === ...)` check to only run when executed directly.
+
+### 4. Missing Git Fetch Step
 **Problem:** The workflow couldn't properly diff against the base branch.
 **Fixed:** Added `git fetch origin ${{ github.event.pull_request.base.ref }}` step.
 

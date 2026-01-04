@@ -166,15 +166,17 @@ ${
   }
 }
 
-// CLI - only run if file is executed directly
-const filename = process.argv[2];
-
-if (!filename || !fs.existsSync(filename)) {
-  console.log("Usage: node doc-writer.js <filename>");
-  process.exit(1);
-}
-
-const docWriter = new DocumentationWriter("agent-config.json");
-docWriter.generateDocs(filename).catch(console.error);
-
 export { DocumentationWriter };
+
+// CLI - only run if file is executed directly (not imported as a module)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const filename = process.argv[2];
+
+  if (!filename || !fs.existsSync(filename)) {
+    console.log("Usage: node doc-writer.js <filename>");
+    process.exit(1);
+  }
+
+  const docWriter = new DocumentationWriter("agent-config.json");
+  docWriter.generateDocs(filename).catch(console.error);
+}
