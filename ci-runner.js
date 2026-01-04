@@ -4,8 +4,8 @@ import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 
-// Use our existing CodeReviewer with thorough config for PRs
-const reviewer = new CodeReviewer("thorough");
+// Use our existing CodeReviewer with config file
+const reviewer = new CodeReviewer(".agent-config.json");
 
 // Set up GitHub API client
 const github = new Octokit({

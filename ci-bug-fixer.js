@@ -2,6 +2,10 @@ import { BugFixer } from "./bug-fixer.js";
 import { execSync } from "child_process";
 
 class CIBugFixer extends BugFixer {
+  constructor() {
+    super(".agent-config.json");
+  }
+
   async runCIFix() {
     console.log("🔍 Checking for test failures...");
 
