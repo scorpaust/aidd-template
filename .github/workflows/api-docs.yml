@@ -3,10 +3,9 @@ name: API Documentation
 on:
   pull_request:
     paths:
-      - "lesson-8-api-docs-automation/api/**"
-      - "lesson-8-api-docs-automation/server/api/**"
-      - "lesson-8-api-docs-automation/routes/**"
-      - "lesson-8-api-docs-automation/endpoints/**"
+      - "api/**"
+      - "server/api/**"
+      - "*.js"
 
 jobs:
   update-docs:
@@ -15,13 +14,10 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
-    defaults:
-      run:
-        working-directory: lesson-8-api-docs-automation
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2 # Need at least 2 commits for git diff
+          fetch-depth: 2
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.head_ref }}
 

@@ -1,4 +1,9 @@
 function processUserData(userData) {
+  // Added null check to fix potential bug
+  if (!userData || !userData.email) {
+    throw new Error("Invalid user data provided");
+  }
+
   const email = userData.email.toLowerCase();
 
   const users = getAllUsers();
@@ -8,11 +13,7 @@ function processUserData(userData) {
     }
   }
 
-  const query = `SELECT * FROM users WHERE email = '${email}'`;
-  try {
-    return database.query(query);
-  } catch (error) {
-    console.error('Database query failed:', error);
-    throw new Error('Unable to process user data');
-  }
+  // Using parameterized query to prevent SQL injection
+  const query = `SELECT * FROM users WHERE email = ?`;
+  return database.query(query, [email]);
 }
