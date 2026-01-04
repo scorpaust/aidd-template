@@ -1,0 +1,22 @@
+{
+  "name": "ai-first-strategic-agent",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@ai-sdk/openai": "^2.0.68",
+    "@octokit/rest": "^22.0.1",
+    "@sentry/node": "^10.25.0",
+    "ai": "^5.0.93",
+    "defu": "^6.1.4",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}
