@@ -1,7 +1,7 @@
 function processUserData(userData) {
   // Added null check to fix potential bug
   if (!userData || !userData.email) {
-    throw new Error("Invalid user data provided just yet");
+    throw new Error("Invalid user data provided");
   }
 
   const email = userData.email.toLowerCase();
